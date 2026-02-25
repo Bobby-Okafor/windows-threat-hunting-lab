@@ -1,7 +1,32 @@
-// Encoded PowerShell → Scheduled Task Persistence (Chained Detection)
+// Hunt: Encoded PowerShell Execution -> Scheduled Task Persistence
+// Data: Windows Security Events (4688, 4698)
+// Goal: Correlate encoded PowerShell process creation with scheduled task creation within a time window.
 
-// Step 1: Identify encoded PowerShell execution
+let TimeWindowMinutes = 5;
+
+// Step 1: Encoded PowerShell execution (4688)
+let EncodedPS =
 SecurityEvent
 | where EventID == 4688
-| where CommandLine contains "-enc"
-| project TimeGenerated, Computer, Account, CommandLine
+| where CommandLine has_any ("-enc", "-encodedcommand")
+| project PS_Time = TimeGenerated, Computer, PS_Account = Account, PS_CommandLine = CommandLine;
+
+// Step 2: Scheduled task creation (4698)
+let TaskCreate =
+SecurityEvent
+| where EventID == 4698
+| project Task_Time = TimeGenerated, Computer, Task_Account = Account, TaskName;
+
+// Step 3: Correlate within window (execution -> persistence)
+EncodedPS
+| join kind=inner TaskCreate on Computer
+| where Task_Time between (PS_Time .. PS_Time + totimespan(TimeWindowMinutes * 1m))
+| project
+    PS_Time,
+    Task_Time,
+    Computer,
+    PS_Account,
+    Task_Account,
+    TaskName,
+    PS_CommandLine
+| order by PS_Time desc
