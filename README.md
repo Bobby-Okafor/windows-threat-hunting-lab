@@ -23,3 +23,7 @@ Structured, hypothesis-driven threat hunts conducted in a controlled Windows lab
 
 ## Detection Development
 - 4+ KQL-based detection queries (lab-validated)
+
+## Scope Disclaimer
+
+All hunts were conducted in a controlled lab environment for detection development practice. Queries are conceptual and not deployed in a production SIEM.
