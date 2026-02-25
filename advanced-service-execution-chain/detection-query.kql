@@ -1,0 +1,47 @@
+// Hunt: Privileged Logon -> Service Installation -> Execution Chain
+// Data: Security Events (4624, 4672, 4688) + System Event (7045)
+// Goal: Correlate elevated authentication with service creation and execution
+
+let TimeWindowMinutes = 5;
+
+// Step 1: Privileged logon
+let PrivLogon =
+SecurityEvent
+| where EventID == 4624
+| where LogonType in (3, 10)  // Network or Remote Interactive
+| project Logon_Time = TimeGenerated, Computer, Account, LogonType;
+
+// Step 2: Special privileges assigned
+let PrivAssign =
+SecurityEvent
+| where EventID == 4672
+| project Priv_Time = TimeGenerated, Computer, Account;
+
+// Step 3: Service installation
+let ServiceInstall =
+SecurityEvent
+| where EventID == 7045
+| project Service_Time = TimeGenerated, Computer, ServiceName;
+
+// Step 4: Process execution
+let ProcExec =
+SecurityEvent
+| where EventID == 4688
+| project Exec_Time = TimeGenerated, Computer, Account, NewProcessName;
+
+// Step 5: Correlation
+PrivLogon
+| join kind=inner PrivAssign on Computer
+| join kind=inner ServiceInstall on Computer
+| join kind=inner ProcExec on Computer
+| where Service_Time between (Logon_Time .. Logon_Time + totimespan(TimeWindowMinutes * 1m))
+| where Exec_Time between (Service_Time .. Service_Time + totimespan(TimeWindowMinutes * 1m))
+| project
+    Logon_Time,
+    Service_Time,
+    Exec_Time,
+    Computer,
+    Account,
+    ServiceName,
+    NewProcessName
+| order by Logon_Time desc
