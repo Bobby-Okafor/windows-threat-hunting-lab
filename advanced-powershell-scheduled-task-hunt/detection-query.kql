@@ -1,0 +1,7 @@
+// Encoded PowerShell → Scheduled Task Persistence (Chained Detection)
+
+// Step 1: Identify encoded PowerShell execution
+SecurityEvent
+| where EventID == 4688
+| where CommandLine contains "-enc"
+| project TimeGenerated, Computer, Account, CommandLine
