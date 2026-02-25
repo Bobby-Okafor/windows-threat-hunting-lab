@@ -23,6 +23,8 @@ An adversary may execute PowerShell using Base64-encoded arguments (-enc) to obf
 - PowerShell Operational logging enabled
 - Controlled adversary simulation
 
+ Controlled lab simulation; not production SIEM deployment. 
+
 ---
 
 ## Telemetry Sources
@@ -80,3 +82,5 @@ Detection approach:
 ## Outcome
 
 Established structured multi-event detection logic for identifying execution-to-persistence chaining within Windows telemetry.
+
+
