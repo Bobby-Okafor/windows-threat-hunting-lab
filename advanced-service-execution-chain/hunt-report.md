@@ -22,6 +22,8 @@ An adversary may authenticate remotely using valid credentials (Event ID 4624), 
 - Sysmon configured (Event ID 1 – Process Creation visibility)
 - Controlled PsExec simulation for service-based execution
 
+Controlled lab simulation; not production SIEM deployment.
+
 ---
 
 ## Telemetry Sources
