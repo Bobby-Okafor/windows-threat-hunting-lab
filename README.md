@@ -17,9 +17,17 @@ Structured, hypothesis-driven threat hunts conducted in a controlled Windows lab
 - Baseline-informed false-positive reduction
 - Structured documentation for analyst handoff
 
-## Featured Hunts (Advanced)
-1. Encoded PowerShell → Scheduled Task Persistence (chained detection)
-2. Privileged Logon → Service Installation → Follow-on Execution (chained detection)
+  
+## Featured Hunts
+
+- Registry Run Key Persistence  
+  → Hunt-RunKey-Persistence/Report.md
+
+- Encoded PowerShell → Scheduled Task Persistence  
+  → advanced-powershell-scheduled-task
+
+- Privileged Logon → Service Installation → Follow-on Execution  
+  → advanced-service-execution-chain/hunt-report.md
 
 ## Detection Development
 - 4+ KQL-based detection queries (lab-validated)
