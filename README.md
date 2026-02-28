@@ -24,7 +24,7 @@ Structured, hypothesis-driven threat hunts conducted in a controlled Windows lab
   → Hunt-RunKey-Persistence/Report.md
 
 - Encoded PowerShell → Scheduled Task Persistence  
-  → advanced-powershell-scheduled-task
+  → advanced-powershell-scheduled-task-hunt/hunt-report.md
 
 - Privileged Logon → Service Installation → Follow-on Execution  
   → advanced-service-execution-chain/hunt-report.md
