@@ -1,0 +1,13 @@
+// Run Key Persistence - Sysmon Registry Value Set (EventID 13)
+// Detect HKCU\Software\Microsoft\Windows\CurrentVersion\Run value modifications
+
+let RunKeyPath = @"\Software\Microsoft\Windows\CurrentVersion\Run\";
+Sysmon
+| where EventID == 13
+| extend TargetObject = tostring(EventData.TargetObject),
+         Details = tostring(EventData.Details),
+         Image = tostring(EventData.Image),
+         User = tostring(EventData.User)
+| where TargetObject has RunKeyPath
+| project TimeGenerated, Computer, User, Image, TargetObject, Details, EventID
+| order by TimeGenerated desc
