@@ -19,3 +19,7 @@ Artifacts included demonstrate:
 - Process execution lineage  
 - Delayed execution behavior  
 - Persistence verification
+
+## Detections (KQL)
+- `Detections/runkey_persistence_sysmon13.kql`
+- `Detections/runkey_persistence_chain_13_to_4688.kql`
