@@ -84,31 +84,31 @@ Detection approach:
 ## Evidence Artifacts
 
 1. **Task Creation via PowerShell Script**  
-   ![Task Creation](Artifacts/01_PowerShell_TaskCreation.png)
+   ![Task Creation](Artifacts/01_PowerShell_TaskCreation.jpg)
 
 2. **PowerShell ScriptBlock Log (4104 GUI)**  
-   ![4104 GUI](Artifacts/02_Event4104_GUI.png)
+   ![4104 GUI](Artifacts/02_Event4104_GUI.jpg)
 
 3. **Process Creation Event (4688 GUI)**  
-   ![4688 GUI](Artifacts/03_Event4688_GUI.png)
+   ![4688 GUI](Artifacts/03_Event4688_GUI.jpg)
 
 4. **Process Creation Query Results**  
-   ![4688 Query](Artifacts/04_Event4688_Query.png)
+   ![4688 Query](Artifacts/04_Event4688_Query.jpg)
 
 5. **Scheduled Task Creation Query Results**  
-   ![4698 Query](Artifacts/05_Event4698_Query.png)
+   ![4698 Query](Artifacts/05_Event4698_Query.jpg)
 
 6. **Alternate Scheduled Task Creation Evidence**  
-   ![4698 Query Alt](Artifacts/06_Event4698_Query_Alt.png)
+   ![4698 Query Alt](Artifacts/06_Event4698_Query_Alt.jpg)
 
 7. **PowerShell ScriptBlock Query Results (4104)**  
-   ![4104 Query](Artifacts/07_Event4104_Query.png)
+   ![4104 Query](Artifacts/07_Event4104_Query.jpg)
 
 8. **Scheduled Task Creation Event (4698 GUI)**  
-   ![4698 GUI](Artifacts/08_Event4698_GUI.png)
+   ![4698 GUI](Artifacts/08_Event4698_GUI.jpg)
 
 9. **Task Execution Confirmation (Event 110)**  
-   ![Task Execution](Artifacts/09_Event110_TaskExecution.png)
+   ![Task Execution](Artifacts/09_Event110_TaskExecution.jpg)
 
 Established structured multi-event detection logic for identifying execution-to-persistence chaining within Windows telemetry.
 
